@@ -1,0 +1,41 @@
+.package-box > div{
+    background-color: #FF3252;
+    color: #fff;
+    padding: 15px 0 0 0;
+    border-radius: 10px;
+    text-align: center;
+    width: 90%;
+    margin: auto;
+}
+.package-box .package-info{
+    width: fit-content;
+    padding: 0px 3px;
+    color: #fff;
+    font-size: 14px;
+}
+.package-box h5{
+    font-weight: bold;
+}
+.package-box hr{
+    background-color: #fff;
+    height: 1px;
+    border: 0;
+}
+.package-box section{
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #FF3252;
+    color: #FF3252;
+    padding-top: 10px;
+    padding-bottom: 25px;
+    border-radius: 5px;
+}
+.package-box section > div{
+    padding: 5px 0;
+}
+.package-box section div a{
+    background-color: #FF3252;
+    color: #fff;
+    border-radius: 30px;
+    padding: 8px 45px;
+}

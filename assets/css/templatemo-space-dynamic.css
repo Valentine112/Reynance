@@ -1117,7 +1117,7 @@ Portfolio
   top: 0;
   visibility: hidden;
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   transition: all 0.5s;
 }
 
@@ -1149,7 +1149,7 @@ Portfolio
 .our-portfolio .showed-content {
   top: 0px;
   position: relative;
-  z-index: 3;
+  z-index: 2;
   background-color: #fff;
   text-align: center;
   padding: 50px;
