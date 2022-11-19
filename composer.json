@@ -1,0 +1,19 @@
+{
+    "name": "mac/reynance",
+    "autoload": {
+        "psr-4": {
+            "Mac\\Reynance\\": "src/",
+            "Service\\": "service/",
+            "Model\\": "model/",
+            "Controller\\": "controller/",
+            "Config\\": "config/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Valentine",
+            "email": "valenny112@gmail.com"
+        }
+    ],
+    "require": {}
+}
