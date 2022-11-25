@@ -4,13 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up Form by Colorlib</title>
+    <title>Reynance</title>
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
 
     <!-- Main css -->
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .form-title{
+            color: #DF4076;
+        }
+    </style>
 </head>
 <body>
 
@@ -24,39 +29,43 @@
                     
                         <h2 class="form-title">Create account</h2>
                         <p id="response"></p>
+                        <div id="smsgSubmit" class="h5 text-center hidden"></div>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="name" id="name" placeholder="Your Name"/>
+                            <input type="text" class="form-input" name="name" id="fname" placeholder="Firstname"/>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-input" name="email" id="email" placeholder="Your Email"/>
+                            <input type="text" class="form-input" name="name" id="lname" placeholder="Lastname"/>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="password" id="password" placeholder="Password"/>
-                            <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
+                            <input type="text" class="form-input" name="name" id="uname" placeholder="Username"/>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="phone" id="phone" placeholder="Your Number"/>
+                            <input type="email" class="form-input" name="email" id="semail" placeholder="Email"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-input" name="password" id="spassword" placeholder="Password"/>
                         </div>
                         <div class="form-group">
                             By signing up means that you have agreed to our <a href="#" class="term-service">Terms of service</a>
                         </div>
+                        <div>
+                            <a href="forgot.php">Forgotten password?</a>
+                        </div>
+                        <br>
                         <div class="form-group">
-                            <input type="submit" name="submit" id="submit" class="form-submit" value="Sign up" onclick="submitForm(this, 'signup')"/>
+                            <input type="submit" name="submit" id="submit" class="form-submit" value="Sign up" onclick="submitForm()"/>
                         </div>
                     </form>
                     <p class="loginhere">
-                        Have already an account ? <a href="#" class="loginhere-link">Login here</a>
+                        Have already an account ? <a href="login.php" class="loginhere-link">Login here</a>
                     </p>
                 </div>
             </div>
         </section>
-
     </div>
-
-    <!-- JS -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="../user/js/service/Func.js"></script>
-    <script src="../user/js/service/Form.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</body>
 </html>
