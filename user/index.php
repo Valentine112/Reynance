@@ -28,14 +28,14 @@
             <?php include "header/header.php"; ?>
             <!-- Account status -->
             <section class="account-info col-12 mx-auto">
-                <div class="row account-1 justify-content-between">
+                <div class="row account-container account-1 justify-content-between">
                     <div class="col-md-5">
                         <div>
-                            <div>Balance</div>
+                            <div class="title-head">Balance</div>
                             <div class="h2">
-                                <span>$</span><?= $wallet_balance; ?>.<span class="h6">00</span>
+                                <sup>$</sup><?= $wallet_balance; ?>.<span class="h6">00</span>
                             </div>
-                            <div>
+                            <div class="title-date">
                                 <?php
                                     $date1 = Date("d-m-y");
 
@@ -49,11 +49,11 @@
                     </div>
                     <div class="col-md-5">
                         <div>
-                            <div>Interest</div>
+                            <div class="title-head">Interest</div>
                             <div class="h2">
-                                <span>$</span><?= $profit; ?>.<span class="h6">00</span>
+                                <sup>$</sup><?= $profit; ?>.<span class="h6">00</span>
                             </div>
-                            <div>
+                            <div class="title-date">
                                 <?php
                                     $date1 = Date("d-m-y");
 
@@ -66,14 +66,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="row account-2 justify-content-between">
+                <div class="row account-container account-2 justify-content-between">
                     <div class="col-md-5">
                         <div>
-                            <div>Growth rate</div>
+                            <div class="title-head">Growth rate</div>
                             <div class="h2">
                                 <?= $increase; ?><span class="h6">%</span>
                             </div>
-                            <div>
+                            <div class="title-date">
                                 <?php
                                     $date1 = Date("d-m-y");
 
@@ -87,9 +87,9 @@
                     </div>
                     <div class="col-md-5">
                         <div>
-                            <div>Withdrawn</div>
-                            <div class="h2"><span>$</span><?= $withdrawn; ?>.<span class="h6">00</span></div>
-                            <div>
+                            <div class="title-head">Withdrawn</div>
+                            <div class="h2"><sup>$</sup><?= $withdrawn; ?>.<span class="h6">00</span></div>
+                            <div class="title-date">
                                 <?php
                                     $date1 = Date("d-m-y");
 

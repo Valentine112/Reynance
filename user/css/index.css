@@ -1,0 +1,18 @@
+.account-container > div{
+    border: 3px solid #f1f1f1;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px 3px #f1f1f1;
+    margin: 5px 0;
+    padding: 4%;
+}
+.account-container .h2{
+    font-family: 'montserrat', sans-serif;
+}
+.account-container .title-head{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+}
+.account-container .title-date{
+    font-size: 13px;
+    color: grey;
+}

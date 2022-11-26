@@ -2,7 +2,7 @@
     <style>
         .quick-link{
             background: linear-gradient(145deg, #FF3252, lightskyblue);
-            padding: 10px 25px;
+            padding: 10px 15px;
             color: #fff;
             border-radius: 5px;
             cursor: pointer;
@@ -38,11 +38,11 @@
             </div>
         </div>
         <div class="row col-12 col-md-12 links justify-content-around pt-3">
-            <div class="col-5">
-                <a href="deposit.php" class="quick-top quick-link"><sup>$</sup> Top up</a>
+            <div class="col-6">
+                <a href="deposit.php" class="quick-top quick-link"><sup>$</sup>Topup</a>
             </div>
-            <div class="col-5">
-                <a href="packages.php" class="quick-invest quick-link"><sup>$</sup> Invest</a>
+            <div class="col-6">
+                <a href="packages.php" class="quick-invest quick-link"><sup>$</sup>Invest</a>
             </div>
         </div>
     </div>

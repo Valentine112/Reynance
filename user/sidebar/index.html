@@ -20,7 +20,14 @@
     <!-- Style -->
     <link rel="stylesheet" href="sidebar/css/style.css">
 
-    <title>Sidebar #8</title>
+    <title>Dashboard</title>
+
+    <style>
+      .collapse ul{
+        padding-inline-start: 20px!important;
+        font-size: 14px;
+      }
+    </style>
   </head>
   <body>
   
@@ -43,10 +50,10 @@
               <div id="collapseOne" class="collapse" aria-labelledby="headingOne">
                 <div>
                   <ul>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Downlines</a></li>
-                    <li><a href="#">My wallet address</a></li>
-                    <li><a href="#">Add new wallet address</a></li>
+                    <li><a href="profile.php">Profile</a></li>
+                    <li><a href="downlines.php">Downlines</a></li>
+                    <li><a href="wallet.php">My wallet address</a></li>
+                    <li><a href="edit-wallet.php">Add new wallet address</a></li>
                   </ul>
                 </div>
               </div>
@@ -59,19 +66,18 @@
               <div id="collapseTwo" class="collapse" aria-labelledby="headingOne">
                 <div>
                   <ul>
-                    <li><a href="#">Deposits</a></li>
-                    <li><a href="#">All Investments</a></li>
-                    <li><a href="#">New Investments</a></li>
-                    <li><a href="#">Withdrawals</a></li>
+                    <li><a href="deposits.php">Deposits</a></li>
+                    <li><a href="investments.php">All Investments</a></li>
+                    <li><a href="withdrawals.php">Withdrawals</a></li>
                   </ul>
                 </div>
               </div>
 
             </li>
-            <li><a href="#">Top up</a></li>
-            <li><a href="#">Investment Packages</a></li>
-            <li><a href="#">Withdraw</a></li>
-            <li><a href="#">Sign out</a></li>
+            <li><a href="topup.php">Top up</a></li>
+            <li><a href="packages.php">Investment Packages</a></li>
+            <li><a href="withdraw.php">Withdraw</a></li>
+            <li><a href="../logs/login.php">Sign out</a></li>
 
           </ul>
 
