@@ -1,10 +1,6 @@
 <?php
     ini_set('display_errors', 1);
 
-    require "../config/db.php";
-    require "../php/func.php";
-    require "../php/query.php";
-
     $email = $_SESSION['mail'];
 
     $selecting = new Select($link);
@@ -23,7 +19,10 @@
         $counting = $row['counting'];
         $wallet_balance = $row['walletbalance'];
 
+        
         if(isset($row['pdate']) &&  ($row['pdate'] != '0' && $row['pdate'] != '') && isset($row['duration'])  && isset($row['increase'])  && isset($row['usd']) && $row['activate'] == 1):
+
+            
             $endpackage = new DateTime($pdate);
             $endpackage->modify( '+ '.$duration. 'day');
             $Date2 = $endpackage->format('Y-m-d');
@@ -44,12 +43,14 @@
             $one = 1;
             $f = date('Y-m-d', strtotime($Date2 . ' + '. $one.'day'));
 
+            /*
+
             if(isset($days) && $days == 0 || $days < 0 || $Date2 == (date("Y/m/d")) || $counting > 10){
                 $zero = 0;
                 $empty = "";
                 $new_balance = $wallet_balance + $profit;
 
-                $updating = new Update($link, "SET activate = ?, walletbalance= walletbalance + ?, profit = ?, increase = ?, pname = '', counting = ? WHERE email = ?#, $zero# $new_balance# $zero# $zero# $empty# $zero# $email");
+                $updating = new Update($link, "SET activate = ?, walletbalance = walletbalance + ?, profit = ?, increase = ?, pname = '', counting = ? WHERE email = ?#, $zero# $new_balance# $zero# $zero# $empty# $zero# $email");
 
                 if($updating->mutate('iiiisis', 'users')){
                     $percentage = $pp = 0;
@@ -67,7 +68,7 @@
             }else{
                 $_SESSION['pprofit'] = $percentage;
             }
-        $add="days";
+        $add="days";*/
  
         else:
             $daily ="";

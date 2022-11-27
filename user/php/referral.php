@@ -1,9 +1,5 @@
 <?php
     ini_set('display_errors', 1);
-
-    require "../config/db.php";
-    require "../php/func.php";
-    require "../php/query.php";
     
     $id = $_SESSION['id'];
     $email = $_SESSION['mail'];

@@ -10,12 +10,13 @@
 
     $selecting = new Select($link);
     $selecting->more_details("WHERE id = ? LIMIT 1, $id");
-    $value = $selecting->pull("pdate, duration, increase, usd, refcode, walletbalance, initial_balance, profit, counting, activate", "users");
+    $value = $selecting->pull("pdate, pname, duration, increase, usd, refcode, walletbalance, initial_balance, profit, counting, activate", "users");
     $selecting->reset();
     if($value[1] > 0) {
         $row = $value[0][0];
 
         $pdate = $row['pdate'];
+        $pkgName = $row['pname'];
         $duration = $row['duration'];
         $increase = $row['increase'];
         $usd = $row['usd'];
@@ -49,19 +50,63 @@
 
     if(isset($pdate) && ($pdate != null && $pdate != '0') && ($duration != null || $duration != 0) && $active == 1) {
 
-        $endpackage = new DateTime($pdate);
-        $endpackage->modify( '+ '.$duration. 'day');
-        $Date2 = $endpackage->format('Y-m-d');
-
-        $current=date("Y/m/d");
-    
-        $diff = (strtotime($Date2) - strtotime($current));
-        
-        $days=floor($diff / (60*60*24));
-
-        $daily = $duration - $days;
         $percentage = ($increase/100) * $usd;
 
+        $ptime = strtotime($pdate);
+        $ctime = strtotime(date('Y-m-d H:i:s'));
+
+        $daysCount = (60 * 60) * 24;
+
+        $daysCount = (($ctime - $ptime)/$daysCount);
+
+        $daysCount = floor($daysCount);
+
+        $zero = 0;
+        $empty = "";
+
+        // First check if there is a running package
+        if($active === 1):
+
+            // Check if the due date has been reached
+            if($daysCount >= $duration):
+                if($pkgName == "MINING"):
+                    // MINING PACKAGE
+
+
+                else:
+                    // REGULAR PACKAGES
+
+                    // Due date has been reached
+                    // Save profit and reset
+                    $totalProfit = $percentage * $duration;
+                    // Reset
+
+                    $updating = new Update($link, "SET activate = ?, walletbalance = walletbalance + ?, profit = ?, increase = ?, pname = ?, counting = ?, duration = ?, froms = ? WHERE email = ?#, $zero# $totalProfit# $zero# $zero# $empty# $zero# $zero# $zero# $email");
+                    $updating->mutate('iiiisiiis', 'users');
+                endif;
+
+            else:
+                if($pkgName == "MINING"):
+                    // MINING PACKAGE
+
+                    // Check if a 3 day interval has been reached
+                    $interval = $daysCount % 3;
+                    print_r($interval);
+
+
+                else:
+                    // REGULAR PACKAGES
+                    // Due date hasn't been reached yet
+                    $totalProfit = $percentage * $daysCount;
+
+                    $updating = new Update($link, "SET profit = ? WHERE email = ?# $totalProfit# $email");
+                    $updating->mutate('is', 'users');
+                endif;
+
+            endif;
+        endif;
+
+        /*
         if(isset($days) && $days == 0 || $days < 0 || $Date2 == (date("Y/m/d")) || $counting == 0) {
 
             $pp = $percentage;
@@ -89,7 +134,7 @@
                 
                 $_SESSION['pprofit'] = $percentage;
             }
-        }
+        }*/
     }else{
         $daily = "";
         $percentage ="0";

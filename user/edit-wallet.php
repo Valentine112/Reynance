@@ -2,6 +2,16 @@
     require "config/initiate.php";
     require "php/index.php";
     include "sidebar/index.html";
+
+    $id = $_SESSION['id'];
+
+    $selecting = new Select($link);
+    $selecting->more_details("WHERE id = ?, $id");
+    $value = $selecting->pull("btc, eth, shiba, usdt", "users");
+    $selecting->reset();
+
+    $data = $value[0][0];
+
 ?>
 
 <!DOCTYPE html>
@@ -46,32 +56,81 @@
         <!-- User profile -->
         <div class="container-fluid col-lg-9">
             <?php include "header/header.php"; ?>
+
+            <p class="text-center" id="message"></p>
             <div class="wallet-box row justify-content-around">
                 <div class="col-11 col-md-5">
                     <label for="Bitcoin">Bitcoin</label>
-                    <input type="text" placeholder="bitcoin address" class="form-control">
+                    <input type="text" placeholder="bitcoin address" class="form-control" id="btc" value="<?= $data['btc']; ?>">
                 </div>
 
                 <div class="col-11 col-md-5">
-                    <label for="Bitcoin">Ethereum</label>
-                    <input type="text" placeholder="bitcoin address" class="form-control">
+                    <label for="Ethereum">Ethereum</label>
+                    <input type="text" placeholder="ethereum address" class="form-control" id="eth" value="<?= $data['eth']; ?>">
                 </div>
 
                 <div class="col-11 col-md-5">
-                    <label for="Bitcoin">Shiba</label>
-                    <input type="text" placeholder="bitcoin address" class="form-control">
+                    <label for="Shiba">Shiba</label>
+                    <input type="text" placeholder="shiba address" class="form-control" id="shiba" value="<?= $data['shiba']; ?>">
                 </div>
 
                 <div class="col-11 col-md-5">
-                    <label for="Bitcoin">USDT</label>
-                    <input type="text" placeholder="bitcoin address" class="form-control">
+                    <label for="USDT">USDT</label>
+                    <input type="text" placeholder="usdt address" class="form-control" id="usdt" value="<?= $data['usdt']; ?>">
+                </div>
+
+                <div class="col-11 col-md-11">
+                    <label for="pass">Enter password to confirm</label>
+                    <input type="password" class="form-control" id="pass" placeholder="Confirm password" require>
                 </div>
 
                 <div class="col-11 col-md-6 pt-5">
-                    <button class="form-control btn btn-primary">Update</button>
+                    <button class="form-control btn btn-primary" onclick="update()">Update</button>
                 </div>
             </div>
         </div>
     </main>
 </body>
+
+<script>
+    var msg = document.getElementById("message")
+
+    function update() {
+        var password = document.getElementById("pass")
+        var btc = document.getElementById("btc")
+        var eth = document.getElementById("eth")
+        var shiba = document.getElementById("shiba")
+        var usdt = document.getElementById("usdt")
+
+        var url = "action=Update&btc=" + btc.value + "&eth=" + eth.value + "&shiba=" + shiba.value + "&usdt=" + usdt.value + "&pass=" + pass.value
+
+        var ajx = new XMLHttpRequest()
+        ajx.addEventListener("load", completeHandler, false)
+        ajx.open("POST", "PHP/edit-wallet.php");
+        ajx.setRequestHeader("Content-type","application/x-www-form-urlencoded")
+        ajx.send(url)
+    }
+
+    function completeHandler(ev) {
+        var result = ev.target.responseText
+        console.log(result)
+        if(result == "success"){
+            msg.classList.remove("text-danger")
+            msg.classList.add("text-success")
+
+            msg.innerHTML = "Successfully updated profile"
+        }
+        else if(result == "error 2"){
+            msg.classList.remove("text-success")
+            msg.classList.add("text-danger")
+
+            msg.textContent = "Password is incorrect"
+        }else{
+            msg.classList.remove("text-success")
+            msg.classList.add("text-danger")
+
+            msg.textContent = "Failed to update profile"
+        }
+    }
+</script>
 </html>

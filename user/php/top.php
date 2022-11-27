@@ -1,9 +1,5 @@
 <?php
     ini_set('display_errors', 1);
-
-    require "../config/db.php";
-    require "../php/func.php";
-    require "../php/query.php";
     
     include "../services/Mailing1.php";
     require "t-mail/t-mail.php";
@@ -41,7 +37,7 @@
     }
 
     $selecting = $link->prepare("SELECT $wallet FROM admin WHERE email = ?");
-    $selecting->bind_param('s', $emaila);
+    $selecting->bind_param('s', $admin);
     $selecting->execute();
     $selecting->bind_result($wallet_address);
     $selecting->store_result();
@@ -103,22 +99,22 @@
             endif;
 
             if(!$error):
-                $company = "Coretiflex";
+                $company = "Reynance";
                 $pending = "pending";
                 $empty = "";
 
 
                 $btctnx = uniqid("btcid");
-                $subject = ["usd", "image", "btctnx", "email", "status", "type", "tnxid"];
+                $subject = ["usd", "mode", "image", "btctnx", "email", "status", "type", "tnxid"];
                 
-                $items = [$amount, $photo_path1, $btctnx, $email, $pending, $_SESSION['crypto_name'], $tnx];
+                $items = [$amount, $crypto, $photo_path1, $btctnx, $email, $pending, $_SESSION['crypto_name'], $tnx];
 
                 $inserting = new Insert($link, "btc", $subject, "");
-                if($inserting->push($items, 'issssss')):
+                if($inserting->push($items, 'isssssss')):
 
                     $body = tmail_body($_SESSION['username'], $amount, strtoupper($_SESSION['crypto_name']), $tnx, $date1);
 
-                    $mailer = new Mailing($email, "invest@coretiflex.com", "Coretiflex", $_SESSION['username']);
+                    $mailer = new Mailing($email, "invest@reynance.com", "Reynance", $_SESSION['username']);
                     $mailer->config();
                     $mailer->set_params($body, 'Payment Details');
                     if($mailer->send()):

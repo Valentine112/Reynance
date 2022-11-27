@@ -72,4 +72,53 @@
         </div>
     </main>
 </body>
+
+<script src="js/general.js"></script>
+<script>
+    var msg = document.getElementById("message")
+
+    function update() {
+        var first = document.getElementById("first")
+        var last = document.getElementById("last")
+        var phone = document.getElementById("phone")
+        var pass = document.getElementById("pass")
+
+
+        let val = ""
+        first = first.value
+        last = last.value
+        phone = phone.value
+
+        var url = "action=Update&fname=" + first + "&lname=" + last + "&phone=" + phone + "&pass=" + pass.value
+
+        var ajx = new XMLHttpRequest()
+        ajx.addEventListener("load", completeHandler, false)
+        ajx.open("POST", "PHP/edit.php");
+        ajx.setRequestHeader("Content-type","application/x-www-form-urlencoded")
+        ajx.send(url)
+    }
+
+    function completeHandler(ev) {
+        var result = ev.target.responseText
+        console.log(result)
+        if(result == "success"){
+            msg.classList.remove("text-danger")
+            msg.classList.add("text-success")
+
+            msg.innerHTML = "Successfully updated profile <br><small class='pt-4' style='color: grey'>Changes would apply after you logout</small>"
+        }
+        else if(result == "error 2"){
+            msg.classList.remove("text-success")
+            msg.classList.add("text-danger")
+
+            msg.textContent = "Password is incorrect"
+        }else{
+            msg.classList.remove("text-success")
+            msg.classList.add("text-danger")
+
+            msg.textContent = "Failed to update profile"
+        }
+    }
+
+</script>
 </html>

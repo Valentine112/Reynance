@@ -2,6 +2,16 @@
     require "config/initiate.php";
     require "php/index.php";
     include "sidebar/index.html";
+
+    $id = $_SESSION['id'];
+
+    $selecting = new Select($link);
+    $selecting->more_details("WHERE id = ?, $id");
+    $value = $selecting->pull('usdt, shiba, eth, btc', 'users');
+    $selecting->reset();
+
+    $data = $value[0][0];
+
 ?>
 
 <!DOCTYPE html>
@@ -48,13 +58,26 @@
                 <tr>
                     <th>Wallet</th>
                     <th>Wallet address</th>
-                    <th>Date</th>
                 </tr>
 
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>Bitcoin</td>
+                    <td><?= $data['btc']; ?></td>
+                </tr>
+
+                <tr>
+                    <td>Ethereum</td>
+                    <td><?= $data['eth']; ?></td>
+                </tr>
+
+                <tr>
+                    <td>Shiba</td>
+                    <td><?= $data['shiba']; ?></td>
+                </tr>
+
+                <tr>
+                    <td>USDT</td>
+                    <td><?= $data['usdt']; ?></td>
                 </tr>
             </table>
 

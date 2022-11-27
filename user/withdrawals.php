@@ -2,6 +2,15 @@
     require "config/initiate.php";
     require "php/index.php";
     include "sidebar/index.html";
+
+    $mail = $_SESSION['mail'];
+
+    $selecting = new Select($link);
+    $selecting->more_details("WHERE email = ?, $email");
+    $value = $selecting->pull('moni, mode, date, status', 'wbtc');
+    $selecting->reset();
+
+    $data = $value[0];
 ?>
 
 <!DOCTYPE html>
@@ -47,14 +56,26 @@
                 <tr>
                     <th>Amount</th>
                     <th>Wallet</th>
+                    <th>Status</th>
                     <th>Date</th>
                 </tr>
 
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                <?php if($value[1] < 1): ?>
+                    <tr>
+                        <td>None</td>
+                        <td>None</td>
+                        <td>None</td>
+                        <td>None</td>
+                    </tr>
+                <?php else: ?>
+                    <?php foreach($data as $val): ?>
+                        <tr>
+                            <td><?= $val['moni']; ?></td>
+                            <td><?= $val['mode']; ?></td>
+                            <td><?= $val['status']; ?></td>
+                            <td><?= $val['date']; ?></td>
+                        </tr>
+                    <?php endforeach; endif; ?>
             </table>
 
         </div>

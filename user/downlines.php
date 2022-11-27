@@ -1,5 +1,6 @@
 <?php
     require "config/initiate.php";
+    require "php/index.php";
     require "php/referral.php";
     include "sidebar/index.html";
 
@@ -52,6 +53,21 @@
             font-family: 'Roboto', sans-serif!important;
             font-size: 15px;
         }
+        .people{
+            padding: 5px 5px;
+            margin: 5px 0;
+            border: 1px solid #f1f1f1;
+            word-wrap: normal;
+        }
+        .people .username{
+            color: grey;
+        }
+        .people .pending{
+            color: orange;
+        }
+        .people .verified{
+            color: green;
+        }
     </style>
     <title>Dashboard</title>
 </head>
@@ -61,7 +77,7 @@
         <div class="container-fluid col-lg-9">
             <?php include "header/header.php"; ?>
             <div class="big-box">
-                <div class="alert col-12 col-md-7 mx-auto text-center">You get $20 for every referral that you claim</div>
+                <div class="alert col-12 col-md-7 mx-auto text-center">You get $20 for every downliner that deposits</div>
                     <?php if($value[1] < 1): ?>
                         <?php
                             echo "<div class='pt-5 col-12 h3 text-center' style='font-family: montserrat, sans-serif; margin-bottom: 10%; margin-top: 10%;'>Nobody has signed in through your referral code</div>";
@@ -69,14 +85,25 @@
                     <?php else: ?>
                         <section class="pt-5 section">
                             <?php foreach($value[0] as $data): ?>
+                                <?php 
+                                    if($data['verify'] == 0):
+                                        $status = "pending";
+                                    else:
+                                        $status = "verified";
+                                    endif;
+                                ?>
+
                                 <form method="post">
                                     <div class="row main col-12 mx-auto justify-content-around align-items-center">
-                                        <div class="col-12 col-md-8">
-                                            <span><?= $data['username']; ?></span> has registered on Delunance by using your referral code
+                                        <div class="col-12 col-md-8 people">
+                                            <span class="username"><?= $data['username']; ?></span> registered on Reynance by using your referral code
+
+                                            &ensp;&ensp;
+
+                                            <span class="<?= $status; ?>"><?= $status; ?></span>
                                         </div>
                                         <input type="hidden" name="person" value="<?= $data['email']; ?>">
                                         <input type="hidden" name="verified" value="<?= $data['verify']; ?>">
-                                        <div class="col-12 mx-auto text-center col-md-4"><button class="btn btn-primary" name="claim">Claim referral</button></div>
                                     </div>
                                 </form>
                             <?php endforeach; ?>
@@ -95,4 +122,12 @@
         </div>
     </main>
 </body>
+<script>
+    function myFunctions() {
+        var copyText = document.getElementById("myInputs");
+        copyText.select();
+        document.execCommand("copy");
+        alert("Referral link copied: " + copyText.value);
+    }
+</script>
 </html>

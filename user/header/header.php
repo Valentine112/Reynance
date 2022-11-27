@@ -39,10 +39,10 @@
         </div>
         <div class="row col-12 col-md-12 links justify-content-around pt-3">
             <div class="col-6">
-                <a href="deposit.php" class="quick-top quick-link"><sup>$</sup>Topup</a>
+                <a href="topup.php" class="quick-top quick-link">Topup</a>
             </div>
             <div class="col-6">
-                <a href="packages.php" class="quick-invest quick-link"><sup>$</sup>Invest</a>
+                <a href="packages.php" class="quick-invest quick-link">Invest</a>
             </div>
         </div>
     </div>
@@ -54,7 +54,9 @@
         </div>
         <div class="col-5 col-md-12 col-lg-12 text-center">
             <div class="sub-head">Running</div>
-            <span class="sub-head-info">None</span>
+            <span class="sub-head-info">
+                <?= $pkgName == "" ? "None" : $pkgName; ?>
+            </span>
         </div>
     </div>
 

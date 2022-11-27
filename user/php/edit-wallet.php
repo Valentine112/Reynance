@@ -8,16 +8,17 @@
 
     if(isset($_POST['action']) && $_POST['action'] == 'Update'){
 
-        $fname = clean_str($_POST['fname']);
-        $lname = clean_str($_POST['lname']);
-        $phone = clean_str($_POST['phone']);
+        $btc = clean_str($_POST['btc']);
+        $eth = clean_str($_POST['eth']);
+        $shiba = clean_str($_POST['shiba']);
+        $usdt = clean_str($_POST['usdt']);
         $pass = clean_str($_POST['pass']);
 
         $id = $_SESSION['id'];
 
         if($pass === $_SESSION['pass']){
-            $updating = new Update($link, "SET fname = ?, lname = ?, phone = ? WHERE id = ?# $fname# $lname# $phone# $id");
-            if($updating->mutate('sssi', 'users')):
+            $updating = new Update($link, "SET btc = ?, eth = ?, shiba = ?, usdt = ? WHERE id = ?# $btc# $eth# $shiba# $usdt# $id");
+            if($updating->mutate('ssssi', 'users')):
                 echo "success";
             else:
                 echo "error 1";

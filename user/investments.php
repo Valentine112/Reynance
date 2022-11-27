@@ -2,6 +2,15 @@
     require "config/initiate.php";
     require "php/index.php";
     include "sidebar/index.html";
+
+    $id = $_SESSION['id'];
+
+    $selecting = new Select($link);
+    $selecting->more_details("WHERE id = ?, $id");
+    $value = $selecting->pull('amount, package, date', 'investments');
+    $selecting->reset();
+
+    $data = $value[0];
 ?>
 
 <!DOCTYPE html>
@@ -47,16 +56,23 @@
                 <tr>
                     <th>Amount</th>
                     <th>Plan</th>
-                    <th>Status</th>
                     <th>Date</th>
                 </tr>
 
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                <?php if($value[1] < 1): ?>
+                    <tr>
+                        <td>None</td>
+                        <td>None</td>
+                        <td>None</td>
+                    </tr>
+                <?php else: ?>
+                    <?php foreach($data as $val): ?>
+                        <tr>
+                            <td><?= $val['amount']; ?></td>
+                            <td><?= $val['package']; ?></td>
+                            <td><?= $val['date']; ?></td>
+                        </tr>
+                    <?php endforeach; endif; ?>
             </table>
 
         </div>

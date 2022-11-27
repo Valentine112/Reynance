@@ -1,10 +1,6 @@
 <?php
     ini_set('display_errors', 1);
 
-    require "../config/db.php";
-    require "../php/func.php";
-    require "../php/query.php";
-
     $email = $_SESSION['mail'];
 
     $selecting = new Select($link);
