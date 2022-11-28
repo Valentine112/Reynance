@@ -6,7 +6,7 @@
     $id = $_SESSION['id'];
 
     $selecting = new Select($link);
-    $selecting->more_details("WHERE id = ?, $id");
+    $selecting->more_details("WHERE user = ?, $id");
     $value = $selecting->pull('amount, package, date', 'investments');
     $selecting->reset();
 

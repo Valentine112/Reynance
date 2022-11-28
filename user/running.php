@@ -62,7 +62,7 @@
                 }else{
                     if($data['walletbalance'] >= $from && $data['walletbalance'] >= $usd && $usd >= $from && $usd <= $to){
 
-                        $link->autocommit(FALSE);
+                        //$link->autocommit(FALSE);
                         $updating->mutate("isiis", "users");
 
                         // Save the investment
