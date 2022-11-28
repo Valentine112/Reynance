@@ -1,4 +1,5 @@
 <?php
+    include "../services/Mailing1.php";
     require "config/initiate.php";
     require "php/index.php";
     require "php/withdraw.php";
@@ -34,7 +35,7 @@
                         if($updating->mutate("is", "users")){
                             $body = activation("User", "Amount", "Address", "Transaction Id", "Date", $username, $j, $wallet, $tnx, $cdate, "<li><b>Payment Mode:</b> $mode</li><br>");
 
-                            $mailer = new Mailing($email, "invest@macrounique.com", "Macrounique", $_SESSION['username']);
+                            $mailer = new Mailing($email, "invest@reynance.com", "Reynance", $_SESSION['username']);
                             $mailer->config();
                             $mailer->set_params($body, 'Withdrawal');
                             if($mailer->send()):
@@ -91,12 +92,17 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Preferred withdrawal mode</label>
-                                                <select name="mode" class="form-control" id="plan">
+                                                <select name="mode" class="form-control" id="plan" onchange="selectAddress(this)">
                                                     <option value="">select an account type</option>
-                                                    <option value="BITCOIN">Bitcoin</option>
-                                                    <option value="ETHEREUM">Ethereum</option>
-                                                    <option value="SHIBA">SHIBA</option>
-                                                    <option value="Usdt">USDT</option>
+
+                                                    <option value="BITCOIN" data-value="<?= $btc; ?>">Bitcoin</option>
+
+                                                    <option value="ETHEREUM" data-value="<?= $eth; ?>">Ethereum</option>
+
+                                                    <option value="SHIBA" data-value="<?= $shiba; ?>">SHIBA</option>
+
+                                                    <option value="Usdt" data-value="<?= $usdt; ?>">USDT</option>
+
                                                 </select>
                                             </div>
                                         </div>
@@ -114,7 +120,8 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Account details</label>
-                                                <textarea required="" name="wallet" class="form-control" placeholder="Enter correct details"></textarea>
+                                                <textarea required="" name="wallet" class="form-control"
+                                                id="walletAddress" placeholder="Enter correct details"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -139,4 +146,10 @@
         </div>
     </main>
 </body>
+<script>
+    function selectAddress(self) {
+        var val = self.options[self.selectedIndex].getAttribute("data-value")
+        document.getElementById("walletAddress").value = val
+    }
+</script>
 </html>
