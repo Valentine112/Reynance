@@ -1,9 +1,9 @@
 <?php
-    session_start();
+    ini_set('display_errors', 1);
     require "../config/initiate.php";
-    require "../config/db.php";
-    require "../php/func.php";
-    require "../php/query.php";
+    require "../../config/db.php";
+    require "../../php/func.php";
+    require "../../php/query.php";
 
     if(isset($_POST['action']) && $_POST['action'] === "read"){
         $msgid = clean_str($_POST['msgid']);

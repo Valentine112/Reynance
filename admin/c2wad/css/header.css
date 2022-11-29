@@ -1,0 +1,19 @@
+.cover-body{
+    background: linear-gradient(145deg, #FF3252, dodgerblue)!important;
+}
+
+ul li{
+    padding: 5px!important;
+    font-size: 14px;
+}
+*{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+}
+.content-wrapper{
+    background-color: snow;
+}
+.box{
+    background-color: snow;
+    border: 0;
+}

@@ -45,7 +45,7 @@
                     </div>
                     <div class="pt-5 col-12 col-md-6 text-center">
                         <div class="h3 text-danger">Shiba</div>
-                        <div><img src="images/funds-logo/pm.png" alt=""></div>
+                        <div><img src="images/funds-logo/shiba.png" alt=""></div>
                         <div class="pt-4"><a href="pay.php?method=shiba">Add funds</a></div>
                     </div>
                     <div class="pt-5 col-12 col-md-6 text-center">
